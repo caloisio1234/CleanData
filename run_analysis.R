@@ -26,7 +26,7 @@ names(bindsub) <- c("subject")
 activity_label <- read.table("activity_labels.txt", head = FALSE)
 names(activity_label) <- c("activity","act.desc")
 activity_desc <- merge(bindy, activity_label,by.x="activity",by.y="activity", all = FALSE);
-bindy <- activity_desc
+bindy <- activity_desc["act.desc"]
 
 ##Item 4:Appropriately labels the data set with descriptive activity names. 
 col_names <- names(bindx)
@@ -45,10 +45,10 @@ binddata <- cbind(bindx, bindy, bindsub)
 
 ##Item 5:Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 ##split group
-f <- split(binddata, list(binddata$activity, binddata$subject), drop = TRUE)
+split.group <- split(binddata, list(binddata$subject, binddata$act.desc), drop = TRUE)
 dimension <- dim(bindx)[2]
 ##get the average value
-column.mean <- lapply(f, function(x) colMeans(x[,1:dimension]))
+column.mean <- lapply(split.group, function(x) colMeans(x[,1:dimension]))
 output_mean<-as.data.frame(column.mean)
 ##write to the txt file
 write.table(output_mean, "exportdata.txt", sep="\t") 
