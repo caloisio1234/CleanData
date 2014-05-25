@@ -48,11 +48,11 @@ binddata <- cbind(bindx, bindy, bindsub)
 f <- split(binddata, list(binddata$activity, binddata$subject), drop = TRUE)
 dimension <- dim(bindx)[2]
 ##get the average value
-column.ave <- lapply(f, function(x) colMeans(x[,1:dimension]))
-a<-as.data.frame(column.ave)
+column.mean <- lapply(f, function(x) colMeans(x[,1:dimension]))
+output_mean<-as.data.frame(column.mean)
 ##write to the txt file
-write.table(a, "exportdata.txt", sep="\t") 
-
+write.table(output_mean, "exportdata.txt", sep="\t") 
+write.csv(output_mean,"exportdata.csv")
 
 
 
