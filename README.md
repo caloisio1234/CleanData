@@ -1,5 +1,7 @@
 ##Introduction
-This project uses Sumsang 
+This project uses Sumsang data collected from the accelerometers from the Samsung Galaxy S smartphone.
+The final purpose is to use the signal that smartphone gets to predict the activity the user is doing.
+In this project, we clean the data for future usage.
 
 ##What's included in the project
 * run_analysis.R: It's R script file that you can use to rerun the cleaning data process
